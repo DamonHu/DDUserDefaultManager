@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name = 'ZXUserDefaultManager'
 s.swift_version = '5.0'
-s.version = '0.0.1'
+s.version = '0.0.2'
 s.license= { :type => "Apache-2.0", :file => "LICENSE" }
 s.summary = 'iOS UserDefault data management, iOS UserDefault数据管理'
 s.homepage = 'https://github.com/ZXKitCode/ZXUserDefaultManager'
