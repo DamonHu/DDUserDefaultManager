@@ -24,13 +24,17 @@ extension String{
 }
 
 class ZXUserDefaultVC: UIViewController {
-
+    var mTableViewList = [ZXDataCellModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
         let rightBarItem = UIBarButtonItem(title: "close".ZXLocaleString, style: .plain, target: self, action: #selector(_rightBarItemClick))
         self.navigationItem.rightBarButtonItem = rightBarItem
 
         self._createUI()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self._loadData()
     }
 
@@ -67,7 +71,14 @@ extension ZXUserDefaultVC {
     }
 
     func _loadData() {
-        UserDefaults.standard.dictionaryRepresentation()
+        mTableViewList.removeAll()
+        for item in UserDefaults.standard.dictionaryRepresentation().keys.sorted() {
+            let model = ZXDataCellModel()
+            model.key = item
+            model.value = UserDefaults.standard.object(forKey: item)!
+            mTableViewList.append(model)
+        }
+        mTableView.reloadData()
     }
 }
 
@@ -80,12 +91,7 @@ extension ZXUserDefaultVC: UITableViewDelegate, UITableViewDataSource {
         let model = self.mTableViewList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "ZXDataTableViewCell") as! ZXDataTableViewCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
-        if model.fileType == .folder {
-            cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
-        } else {
-            cell.accessoryType = UITableViewCell.AccessoryType.none
-        }
-
+        cell.accessoryType = UITableViewCell.AccessoryType.disclosureIndicator
         cell.updateUI(model: model)
         return cell
     }
@@ -108,49 +114,27 @@ extension ZXUserDefaultVC: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.mTableViewList[indexPath.row]
-        if model.fileType == .folder {
-            extensionDirectoryPath = extensionDirectoryPath + "/" + model.name
-            self._loadData()
-        } else {
-            let rightBarItem = UIBarButtonItem(title: "close".ZXLocaleString, style: .plain, target: self, action: #selector(_rightBarItemClick))
-            self.navigationItem.rightBarButtonItem = rightBarItem
-            self.operateFilePath = self.currentDirectoryPath.appendingPathComponent(model.name, isDirectory: false)
-            //preview
-            let previewVC = QLPreviewController()
-            previewVC.delegate = self
-            previewVC.dataSource = self
-            self.navigationController?.pushViewController(previewVC, animated: true)
-        }
+        let vc = ZXUserDefaultEditVC(model: model)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let model = self.mTableViewList[indexPath.row]
-        if model.fileType == .folder {
-            self.operateFilePath = self.currentDirectoryPath.appendingPathComponent(model.name, isDirectory: true)
-            self._showMore(isDirectory: true)
-        } else {
-            self.operateFilePath = self.currentDirectoryPath.appendingPathComponent(model.name, isDirectory: false)
-            self._showMore(isDirectory: false)
+        let delete = UIContextualAction(style: .destructive, title: "删除") { _, _, complete in
+            UserDefaults.standard.removeObject(forKey: model.key)
+            UserDefaults.standard.synchronize()
+            complete(true)
+            self._loadData()
         }
 
-        return true
-    }
+        let edit = UIContextualAction(style: .normal, title: "编辑") { _, _, complete in
+            let vc = ZXUserDefaultEditVC(model: model)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        edit.backgroundColor = UIColor.zx.color(hexValue: 0x5dae8b)
 
-    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        let config = UISwipeActionsConfiguration(actions: [delete, edit])
+        return config
 
-    }
-}
-
-extension ZXUserDefaultVC: QLPreviewControllerDelegate, QLPreviewControllerDataSource {
-    func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
-        return 1
-    }
-
-    func previewController(_ controller: QLPreviewController, previewItemAt index: Int) -> QLPreviewItem {
-        return self.operateFilePath! as QLPreviewItem
     }
 }

@@ -8,5 +8,6 @@
 import UIKit
 
 class ZXDataCellModel: NSObject {
-
+    var key = ""
+    var value: Any = ""
 }

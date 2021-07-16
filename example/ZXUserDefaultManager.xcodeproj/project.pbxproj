@@ -20,6 +20,7 @@
 		E4292D5826A02F3A00D5F6E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4292D5526A02F3A00D5F6E2 /* Localizable.strings */; };
 		E4292D5A26A030EE00D5F6E2 /* ZXUserDefaultManager.png in Resources */ = {isa = PBXBuildFile; fileRef = E4292D5926A030EE00D5F6E2 /* ZXUserDefaultManager.png */; };
 		E4292D5D26A0476700D5F6E2 /* ZXDataCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4292D5C26A0476700D5F6E2 /* ZXDataCellModel.swift */; };
+		E4292D5F26A1392100D5F6E2 /* ZXUserDefaultEditVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4292D5E26A1392100D5F6E2 /* ZXUserDefaultEditVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		E4292D5726A02F3A00D5F6E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		E4292D5926A030EE00D5F6E2 /* ZXUserDefaultManager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ZXUserDefaultManager.png; sourceTree = "<group>"; };
 		E4292D5C26A0476700D5F6E2 /* ZXDataCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXDataCellModel.swift; sourceTree = "<group>"; };
+		E4292D5E26A1392100D5F6E2 /* ZXUserDefaultEditVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZXUserDefaultEditVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				E4292D4926A028C800D5F6E2 /* ZXUserDefaultVC.swift */,
+				E4292D5E26A1392100D5F6E2 /* ZXUserDefaultEditVC.swift */,
 			);
 			path = vc;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4292D4A26A028C800D5F6E2 /* ZXUserDefaultVC.swift in Sources */,
+				E4292D5F26A1392100D5F6E2 /* ZXUserDefaultEditVC.swift in Sources */,
 				E4292D3826A01D6900D5F6E2 /* ViewController.swift in Sources */,
 				E4292D5D26A0476700D5F6E2 /* ZXDataCellModel.swift in Sources */,
 				E4292D4C26A028DB00D5F6E2 /* ZXUserDefaultManager.swift in Sources */,
