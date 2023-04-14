@@ -6,15 +6,12 @@
 //
 
 import UIKit
-import ZXKitCore
 
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.createUI()
-        ZXKit.regist(plugin: ZXUserDefaultManager.shared)
     }
 
     func createUI() {
@@ -26,7 +23,7 @@ class ViewController: UIViewController {
     }
 
     @objc func _click() {
-        ZXKit.show()
+        ZXUserDefaultManager.shared.start()
     }
 
 }

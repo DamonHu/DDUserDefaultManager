@@ -1,27 +1,22 @@
 PODS:
-  - SnapKit (5.0.1)
-  - ZXKitCore/core (0.1.5):
-    - SnapKit
-    - ZXKitUtil
-  - ZXKitUtil (3.0.1):
-    - ZXKitUtil/core (= 3.0.1)
-  - ZXKitUtil/core (3.0.1)
+  - SnapKit (5.6.0)
+  - ZXKitUtil (4.0.0):
+    - ZXKitUtil/core (= 4.0.0)
+  - ZXKitUtil/core (4.0.0)
 
 DEPENDENCIES:
   - SnapKit
-  - ZXKitCore/core
+  - ZXKitUtil (~> 4.0.0)
 
 SPEC REPOS:
   trunk:
     - SnapKit
-    - ZXKitCore
     - ZXKitUtil
 
 SPEC CHECKSUMS:
-  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  ZXKitCore: 51a3cdf16252e8e023c7bcc6d52b3d251faaed3c
-  ZXKitUtil: 7f8782b19f1696fe259d07f4048196be5f2ea6b7
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  ZXKitUtil: 0d23a979cdc7a7f9df0722148a613986ef007288
 
-PODFILE CHECKSUM: b8f329f9ee5281c1fcdd4ca446b9b4073483e104
+PODFILE CHECKSUM: 0b37b8056a640cfc756d22c6ed96a4a38740969b
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.11.2

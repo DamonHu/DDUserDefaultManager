@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 s.name = 'ZXUserDefaultManager'
 s.swift_version = '5.0'
-s.version = '1.0.0'
+s.version = '2.0.0'
 s.license= { :type => "MIT", :file => "LICENSE" }
 s.summary = 'iOS UserDefault data management, iOS UserDefault数据管理'
 s.homepage = 'https://github.com/DamonHu/ZXUserDefaultManager'
@@ -14,13 +14,8 @@ s.subspec 'core' do |cs|
       'ZXUserDefaultManager' => ['pod/assets/**/*']
     }
     cs.source_files = "pod/*.swift", "pod/view/*.swift", "pod/vc/*.swift", "pod/model/*.swift"
-    cs.dependency 'ZXKitUtil'
+    cs.dependency 'ZXKitUtil', '~>4.0.0'
     cs.dependency 'SnapKit'
-end
-s.subspec 'zxkit' do |cs|
-    cs.dependency 'ZXUserDefaultManager/core'
-    cs.dependency 'ZXKitCore/core'
-    cs.source_files = "pod/zxkit/*.swift"
 end
 s.default_subspecs = "core"
 s.documentation_url = 'https://blog.hudongdong.com/ios/1169.html'
