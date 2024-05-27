@@ -14,7 +14,7 @@ s.subspec 'core' do |cs|
       'DDUserDefaultManager' => ['pod/assets/**/*']
     }
     cs.source_files = "pod/*.swift", "pod/view/*.swift", "pod/vc/*.swift", "pod/model/*.swift"
-    cs.dependency 'DDUtils', '~>5.0.0'
+    cs.dependency 'DDUtils/ui', '~>5.0.0'
     cs.dependency 'SnapKit'
 end
 s.default_subspecs = "core"
