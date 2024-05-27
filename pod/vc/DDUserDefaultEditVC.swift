@@ -7,7 +7,7 @@
 
 import UIKit
 import SnapKit
-import DDKitUtil
+import DDUtils
 
 class DDUserDefaultEditVC: UIViewController {
     private var model: DDDataCellModel

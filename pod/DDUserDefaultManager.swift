@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import DDKitUtil
+import DDUtils
 
 open class DDUserDefaultManager: NSObject {
     private static let instance = DDUserDefaultManager()
@@ -28,7 +28,7 @@ public extension DDUserDefaultManager {
     func start() {
         self.mNavigationController.dismiss(animated: false) { [weak self] in
             guard let self = self else { return }
-            DDKitUtil.shared.getCurrentVC()?.present(self.mNavigationController, animated: true, completion: nil)
+            DDUtils.shared.getCurrentVC()?.present(self.mNavigationController, animated: true, completion: nil)
         }
     }
 }

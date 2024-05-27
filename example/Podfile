@@ -7,5 +7,5 @@ target 'DDUserDefaultManager' do
 
   # Pods for DDUserDefaultManager
 	pod 'SnapKit'
-  	pod 'DDUtil', '~> 5.0.0'
+  	pod 'DDUtils/ui', '~> 5.0.0'
 end
