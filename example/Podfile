@@ -1,11 +1,11 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'ZXUserDefaultManager' do
+target 'DDUserDefaultManager' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for ZXUserDefaultManager
+  # Pods for DDUserDefaultManager
 	pod 'SnapKit'
-  pod 'ZXKitUtil', '~> 4.0.0'
+  	pod 'DDUtil', '~> 5.0.0'
 end

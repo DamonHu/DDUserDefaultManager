@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ZXUserDefaultManager
+//  DDUserDefaultManager
 //
 //  Created by Damon on 2021/7/15.
 //
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
 
     @objc func _click() {
-        ZXUserDefaultManager.shared.start()
+        DDUserDefaultManager.shared.start()
     }
 
 }

@@ -1,18 +1,18 @@
 //
-//  ZXUserDefaultEditVC.swift
-//  ZXUserDefaultManager
+//  DDUserDefaultEditVC.swift
+//  DDUserDefaultManager
 //
 //  Created by Damon on 2021/7/16.
 //
 
 import UIKit
 import SnapKit
-import ZXKitUtil
+import DDKitUtil
 
-class ZXUserDefaultEditVC: UIViewController {
-    private var model: ZXDataCellModel
+class DDUserDefaultEditVC: UIViewController {
+    private var model: DDDataCellModel
     
-    init(model: ZXDataCellModel) {
+    init(model: DDDataCellModel) {
         self.model = model
         super.init(nibName: nil, bundle: nil)
     }
@@ -23,7 +23,7 @@ class ZXUserDefaultEditVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let rightBarItem = UIBarButtonItem(title: "save".ZXLocaleString, style: .plain, target: self, action: #selector(_rightBarItemClick))
+        let rightBarItem = UIBarButtonItem(title: "save".DDLocaleString, style: .plain, target: self, action: #selector(_rightBarItemClick))
         self.navigationItem.rightBarButtonItem = rightBarItem
         self._createUI()
         self._loadData()
@@ -35,7 +35,7 @@ class ZXUserDefaultEditVC: UIViewController {
         tLabel.textAlignment = .center
         tLabel.numberOfLines = 2
         tLabel.font = .systemFont(ofSize: 16, weight: .medium)
-        tLabel.textColor = UIColor.zx.color(hexValue: 0x333333)
+        tLabel.textColor = UIColor.dd.color(hexValue: 0x333333)
         return tLabel
     }()
 
@@ -56,12 +56,12 @@ class ZXUserDefaultEditVC: UIViewController {
         textView.font = .systemFont(ofSize: 14)
         textView.layer.cornerRadius = 10
         textView.layer.borderWidth = 1.0
-        textView.layer.borderColor = UIColor.zx.color(hexValue: 0xeeeeee).cgColor
+        textView.layer.borderColor = UIColor.dd.color(hexValue: 0xeeeeee).cgColor
         return textView
     }()
 }
 
-extension ZXUserDefaultEditVC {
+extension DDUserDefaultEditVC {
     @objc func _rightBarItemClick() {
         switch self.mSegment.selectedSegmentIndex {
             case 0:
@@ -81,7 +81,7 @@ extension ZXUserDefaultEditVC {
     }
 
     func _createUI() {
-        self.view.backgroundColor = UIColor.zx.color(hexValue: 0xffffff)
+        self.view.backgroundColor = UIColor.dd.color(hexValue: 0xffffff)
         self.view.addSubview(mTitleLabel)
         mTitleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)

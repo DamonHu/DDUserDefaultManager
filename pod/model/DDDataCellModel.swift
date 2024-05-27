@@ -1,13 +1,13 @@
 //
-//  ZXDataCellModel.swift
-//  ZXUserDefaultManager
+//  DDDataCellModel.swift
+//  DDUserDefaultManager
 //
 //  Created by Damon on 2021/7/15.
 //
 
 import UIKit
 
-class ZXDataCellModel: NSObject {
+class DDDataCellModel: NSObject {
     var key = ""
     var value: Any = ""
 }

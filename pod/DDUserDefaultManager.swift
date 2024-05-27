@@ -1,22 +1,22 @@
 //
-//  ZXUserDefaultManager.swift
-//  ZXUserDefaultManager
+//  DDUserDefaultManager.swift
+//  DDUserDefaultManager
 //
 //  Created by Damon on 2021/7/15.
 //
 
 import UIKit
-import ZXKitUtil
+import DDKitUtil
 
-open class ZXUserDefaultManager: NSObject {
-    private static let instance = ZXUserDefaultManager()
-    open class var shared: ZXUserDefaultManager {
+open class DDUserDefaultManager: NSObject {
+    private static let instance = DDUserDefaultManager()
+    open class var shared: DDUserDefaultManager {
         return instance
     }
 
     //MARK: UI
     lazy var mNavigationController: UINavigationController = {
-        let rootViewController = ZXUserDefaultVC()
+        let rootViewController = DDUserDefaultVC()
         let navigation = UINavigationController(rootViewController: rootViewController)
         navigation.navigationBar.barTintColor = UIColor.white
         return navigation
@@ -24,11 +24,11 @@ open class ZXUserDefaultManager: NSObject {
 
 }
 
-public extension ZXUserDefaultManager {
+public extension DDUserDefaultManager {
     func start() {
         self.mNavigationController.dismiss(animated: false) { [weak self] in
             guard let self = self else { return }
-            ZXKitUtil.shared.getCurrentVC()?.present(self.mNavigationController, animated: true, completion: nil)
+            DDKitUtil.shared.getCurrentVC()?.present(self.mNavigationController, animated: true, completion: nil)
         }
     }
 }
