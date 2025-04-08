@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 import DDUtils
 
 func UIImageHDBoundle(named: String?) -> UIImage? {
@@ -25,9 +24,9 @@ extension String{
     }
 }
 
-class DDUserDefaultVC: UIViewController {
+open class DDUserDefaultVC: UIViewController {
     var mTableViewList = [DDDataCellModel]()
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         let rightBarItem = UIBarButtonItem(title: "close".DDLocaleString, style: .plain, target: self, action: #selector(_rightBarItemClick))
         self.navigationItem.rightBarButtonItem = rightBarItem
@@ -35,22 +34,26 @@ class DDUserDefaultVC: UIViewController {
         self._createUI()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self._loadData()
     }
 
     @objc func _rightBarItemClick() {
-        self.dismiss(animated: true, completion: nil)
+        if self.isBeingPresented {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
 
     @objc func _leftBarItemClick() {
-
         self._loadData()
     }
 
     lazy var mTableView: UITableView = {
         let tTableView = UITableView(frame: CGRect.zero, style: UITableView.Style.grouped)
+        tTableView.translatesAutoresizingMaskIntoConstraints = false
         tTableView.rowHeight = 60
         tTableView.estimatedRowHeight = 60
         tTableView.backgroundColor = UIColor.clear
@@ -67,9 +70,10 @@ extension DDUserDefaultVC {
     func _createUI() {
         self.view.backgroundColor = UIColor.dd.color(hexValue: 0xffffff)
         self.view.addSubview(mTableView)
-        mTableView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
+        mTableView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        mTableView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        mTableView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        mTableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
     }
 
     func _loadData() {
@@ -85,11 +89,11 @@ extension DDUserDefaultVC {
 }
 
 extension DDUserDefaultVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mTableViewList.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = self.mTableViewList[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "DDDataTableViewCell") as! DDDataTableViewCell
         cell.selectionStyle = UITableViewCell.SelectionStyle.none
@@ -98,29 +102,29 @@ extension DDUserDefaultVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.1
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return UIView()
     }
 
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.1
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView()
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let model = self.mTableViewList[indexPath.row]
         let vc = DDUserDefaultEditVC(model: model)
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let model = self.mTableViewList[indexPath.row]
         let delete = UIContextualAction(style: .destructive, title: "删除") { _, _, complete in
             UserDefaults.standard.removeObject(forKey: model.key)

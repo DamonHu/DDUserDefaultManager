@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 import DDUtils
 
 class DDUserDefaultEditVC: UIViewController {
@@ -32,6 +31,7 @@ class DDUserDefaultEditVC: UIViewController {
     //MARK: UI
     lazy var mTitleLabel: UILabel = {
         let tLabel = UILabel()
+        tLabel.translatesAutoresizingMaskIntoConstraints = false
         tLabel.textAlignment = .center
         tLabel.numberOfLines = 2
         tLabel.font = .systemFont(ofSize: 16, weight: .medium)
@@ -41,18 +41,21 @@ class DDUserDefaultEditVC: UIViewController {
 
     lazy var mSegment: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["Bool", "Number", "String", "Object"])
+        segment.translatesAutoresizingMaskIntoConstraints = false
         segment.addTarget(self, action: #selector(_changeType), for: .valueChanged)
         return segment
     }()
     
     lazy var mValueSegment: UISegmentedControl = {
         let segment = UISegmentedControl(items: ["true", "false"])
+        segment.translatesAutoresizingMaskIntoConstraints = false
         segment.isHidden = true
         return segment
     }()
     
     lazy var mTextView: UITextView = {
         let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
         textView.font = .systemFont(ofSize: 14)
         textView.layer.cornerRadius = 10
         textView.layer.borderWidth = 1.0
@@ -83,32 +86,27 @@ extension DDUserDefaultEditVC {
     func _createUI() {
         self.view.backgroundColor = UIColor.dd.color(hexValue: 0xffffff)
         self.view.addSubview(mTitleLabel)
-        mTitleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
-        }
-
+        mTitleLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 10).isActive = true
+        mTitleLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -10).isActive = true
+        mTitleLabel.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+        
         self.view.addSubview(mSegment)
-        mSegment.snp.makeConstraints { make in
-            make.left.right.equalTo(self.mTitleLabel)
-            make.top.equalTo(mTitleLabel.snp.bottom).offset(30)
-            make.height.equalTo(34)
-        }
+        mSegment.leftAnchor.constraint(equalTo: self.mTitleLabel.leftAnchor).isActive = true
+        mSegment.rightAnchor.constraint(equalTo: self.mTitleLabel.rightAnchor).isActive = true
+        mSegment.topAnchor.constraint(equalTo: self.mTitleLabel.bottomAnchor, constant: 30).isActive = true
+        mSegment.heightAnchor.constraint(equalToConstant: 34).isActive = true
         
         self.view.addSubview(mValueSegment)
-        mValueSegment.snp.makeConstraints { make in
-            make.left.right.equalTo(mSegment)
-            make.top.equalTo(mSegment.snp.bottom).offset(10)
-            make.height.equalTo(40)
-        }
-
+        mValueSegment.leftAnchor.constraint(equalTo: self.mSegment.leftAnchor).isActive = true
+        mValueSegment.rightAnchor.constraint(equalTo: self.mSegment.rightAnchor).isActive = true
+        mValueSegment.topAnchor.constraint(equalTo: self.mSegment.bottomAnchor, constant: 10).isActive = true
+        mValueSegment.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        
         self.view.addSubview(mTextView)
-        mTextView.snp.makeConstraints { make in
-            make.left.right.equalTo(mSegment)
-            make.top.equalTo(mSegment.snp.bottom).offset(10)
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(-20)
-        }
+        mTextView.leftAnchor.constraint(equalTo: self.mSegment.leftAnchor).isActive = true
+        mTextView.rightAnchor.constraint(equalTo: self.mSegment.rightAnchor).isActive = true
+        mTextView.topAnchor.constraint(equalTo: self.mSegment.bottomAnchor, constant: 10).isActive = true
+        mTextView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
     }
 
     func _loadData() {

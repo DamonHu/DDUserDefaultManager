@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class DDDataTableViewCell: UITableViewCell {
 
@@ -30,6 +29,7 @@ class DDDataTableViewCell: UITableViewCell {
 
     lazy var mIconButton: UIButton = {
         let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 12)
         button.setTitleColor(UIColor.dd.color(hexValue: 0xffffff), for: .normal)
         button.backgroundColor = UIColor.dd.color(hexValue: 0x93D9A3)
@@ -40,6 +40,7 @@ class DDDataTableViewCell: UITableViewCell {
 
     lazy var mTitleLabel: UILabel = {
         let tLabel = UILabel()
+        tLabel.translatesAutoresizingMaskIntoConstraints = false
         tLabel.lineBreakMode = .byCharWrapping
         tLabel.numberOfLines = 3
         tLabel.font = .systemFont(ofSize: 12)
@@ -69,20 +70,17 @@ extension DDDataTableViewCell {
 extension DDDataTableViewCell {
     func _createUI() {
         self.contentView.addSubview(mIconButton)
-        mIconButton.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(10)
-            $0.centerY.equalToSuperview()
-            $0.width.equalTo(70)
-            $0.height.equalTo(20)
-        }
+        mIconButton.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true
+        mIconButton.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        mIconButton.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        mIconButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
 
         self.contentView.addSubview(mTitleLabel)
-        mTitleLabel.snp.makeConstraints {
-            $0.left.equalTo(mIconButton.snp.right).offset(10)
-            $0.top.equalToSuperview().offset(5)
-            $0.bottom.equalToSuperview().offset(-5)
-            $0.right.equalToSuperview().offset(-20)
-        }
+        
+        mTitleLabel.leftAnchor.constraint(equalTo: self.mIconButton.rightAnchor, constant: 10).isActive = true
+        mTitleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5).isActive = true
+        mTitleLabel.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -5).isActive = true
+        mTitleLabel.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -20).isActive = true
     }
 
     func _updateButton(model: DDDataCellModel) {

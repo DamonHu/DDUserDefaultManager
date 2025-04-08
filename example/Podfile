@@ -6,6 +6,5 @@ target 'DDUserDefaultManager' do
   use_frameworks!
 
   # Pods for DDUserDefaultManager
-	pod 'SnapKit'
-  	pod 'DDUtils/ui', '~> 5.0.0'
+  pod 'DDUtils/ui', '~> 5.0.0'
 end

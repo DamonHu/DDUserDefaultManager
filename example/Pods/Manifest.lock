@@ -1,22 +1,18 @@
 PODS:
-  - DDUtils/core (5.0.2)
-  - DDUtils/ui (5.0.2):
+  - DDUtils/core (5.0.13)
+  - DDUtils/ui (5.0.13):
     - DDUtils/core
-  - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - DDUtils/ui (~> 5.0.0)
-  - SnapKit
 
 SPEC REPOS:
   trunk:
     - DDUtils
-    - SnapKit
 
 SPEC CHECKSUMS:
-  DDUtils: 56b14d305b574751a3e5336717a6dfd56dd2c58c
-  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  DDUtils: 9d1dab6514cbe6687348bde7ea0f6f2187b55222
 
-PODFILE CHECKSUM: 8dc4bf8c5959ed087153b7fcab882680236a47fd
+PODFILE CHECKSUM: f7b5860ef8a19d1c1ea2fd3200367dc8b145ccde
 
-COCOAPODS: 1.14.3
+COCOAPODS: 1.16.2
